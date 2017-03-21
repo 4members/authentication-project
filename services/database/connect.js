@@ -1,4 +1,5 @@
 var config = require('./config.js');
+var pg = require('pg')
 config = config.local;
 
 module.exports = (config) => {

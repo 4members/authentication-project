@@ -1,7 +1,7 @@
 var hapi = require('hapi');
 var hapiAuthJWT = require('hapi-auth-jwt2');
 var routes = require('./routes.js');
-var config = require('./config.js');
+var config = require('./services/database/config.js');
 config = config.local;
 var connect = require('./services/database/connect.js');
 
