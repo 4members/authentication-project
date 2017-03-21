@@ -5,9 +5,9 @@ function addUser(client, data, cb) {
       username,
       password )
       VALUES (
-        ${data.email},
-        ${data.username},
-        ${data.password})`
+        '${data.email}',
+        '${data.username}',
+        '${data.password}')`
     client.query(sqlQuery, (err, result) => {
         if (err) {
             throw (err)
@@ -38,7 +38,7 @@ function selectUserByEmail(client, email, cb) {
     })
 }
 
-function selectUserName(client, username, cb) {
+function selectUserByUsername(client, username, cb) {
     //select user by username for signup form
     var sqlQuery = `SELECT * FROM usersdetails WHERE username=${username}`
     client.query(sqlQuery, (err, result) => {
@@ -69,7 +69,7 @@ function updateUserData(client, data, cb) {
 module.exports = {
     addUser: addUser,
     selectUser: selectUser,
-    selectUserName: selectUserName,
+    selectUserByUsername: selectUserByUsername,
     selectUserByEmail: selectUserByEmail,
     updateUserData: updateUserData
 }
