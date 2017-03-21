@@ -1,4 +1,4 @@
-function createtables(client, cb) {
+module.exports = (client, cb) => {
     var usersquery = client.query(`CREATE TABLE IF NOT EXISTS usersdetails(
     id SERIAL PRIMARY KEY,
     username varchar(225) UNIQUE,
@@ -6,19 +6,23 @@ function createtables(client, cb) {
     gend varchar(10),
     password varchar(225),
     bio varchar(500),
-    dob date)`, function(err) {
-        if (err) throw err;
+    dob date)`, function(err, result) {
+        if (err) {
+            throw err;
+        }
+        cb(err, result);
     });
 
     var postsquery = client.query(`CREATE TABLE IF NOT EXISTS sessions(
       id SERIAL PRIMARY KEY,
       userid integer REFERENCES usersdetails(id),
       value varchar(500)
-      )`, function(err) {
-        if (err) throw err;
+    )`, function(err, result) {
+        if (err) {
+            throw err;
+        }
+        cb(err, result);
+
     });
 
 }
-module.exports = {
-    createtables : createtables
-};

@@ -1,16 +1,13 @@
-var pg = require('pg')
-var env = require('env2') env('../config.env');
-
-var config = {
-
-}
+var pg = require('pg');
 
 module.exports = {
-    local: {
-        user: process.env.DB_NAME,
-        password: process.env.DB_PASSWORD,
-        database: process.env.DB_USER
-    }
+  local: {
+    database: process.env.DB_NAME,
+    password: process.env.DB_PASSWORD,
+    user: process.env.DB_USER
+  },
+  heroku :{},
+  test:{
 
-
+  }
 }
