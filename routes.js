@@ -1,13 +1,7 @@
-module.exports = [
-{
+
+
+module.exports = [{
     method: 'GET',
-    path: '/{param*}',
-    handler: {
-        directory: {
-            path: '.',
-            redirectToSlash: true,
-            index: true
-        }
-    }
-}
-]
+    path: '/',
+    handler:'login'
+}]
