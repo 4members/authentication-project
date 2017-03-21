@@ -1,12 +1,13 @@
-var pg = require('pg')
-var env = require('env2') env('../config.env');
+var pg = require('pg');
 
-var config = {
-    user: process.env.DB_NAME,
+module.exports = {
+  local: {
+    database: process.env.DB_NAME,
     password: process.env.DB_PASSWORD,
-    database: process.env.DB_USER
+    user: process.env.DB_USER
+  },
+  heroku :{},
+  test:{
+
+  }
 }
-
-var client = new pg.Client(config);
-
-client.connect()

@@ -1,13 +1,7 @@
-module.exports = [
-{
+var login = require('./handlers/login.js')
+
+module.exports = [{
     method: 'GET',
-    path: '/{param*}',
-    handler: {
-        directory: {
-            path: '.',
-            redirectToSlash: true,
-            index: true
-        }
-    }
-}
-]
+    path: '/',
+    handler: login
+}]
