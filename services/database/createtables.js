@@ -3,10 +3,8 @@ module.exports = (client, cb) => {
     id SERIAL PRIMARY KEY,
     username varchar(225) UNIQUE,
     email varchar(225) UNIQUE,
-    gend varchar(10),
     password varchar(225),
-    bio varchar(500),
-    dob date)`, function(err, result) {
+    bio varchar(500))`, function(err, result) {
         if (err) {
             throw err;
         }
