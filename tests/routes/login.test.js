@@ -38,6 +38,3 @@ test('endpoint test | POST/ | Bad request', t => {
             server.stop(t.end);
         });
 });
-test.onFinish(() => {
-    process.exit(0)
-});

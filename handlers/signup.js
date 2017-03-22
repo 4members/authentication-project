@@ -1,10 +1,10 @@
 var users = require('../services/database/users.js')
 var session = require('../services/database/session.js')
-var config = require('../services/database/config.js')
- var connect = require('../services/database/connect.js')
- var env = require('env2')
- env('./config.env');
- client =connect(config.local);
+// var config = require('../services/database/config.js')
+ var client = require('../services/database/connect.js')
+//  var env = require('env2')
+//  env('./config.env');
+//  client =connect(config.local);
         var Bcrypt = require('bcrypt');
 
         module.exports = (req, reply) => {

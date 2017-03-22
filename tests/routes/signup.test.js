@@ -31,7 +31,7 @@ test('endpoint test | POST/ | Bad Request with existed user', t => {
     //this method is to re-write the same request with different parameters or payload instead of re-writting the same request a couple of times
     return server.inject(request)
         .then(response => {
-
+            console.log(response.result);
             t.is(response.result.status, 'fail', 'Sign up failed because user exists');
 
             server.stop(t.end);
@@ -54,8 +54,4 @@ test('endpoint test | POST/ | Bad Request with wrong payload', t => {
             t.notEqual(found,-1, 'Sign up failed for bad password');
             server.stop(t.end);
         });
-});
-
-test.onFinish(() => {
-    process.exit(0)
 });

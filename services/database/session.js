@@ -1,4 +1,6 @@
+
 function createSession(client,values,userid,cb) {
+  console.log('create session');
   //value meanis {session object contain all values}
   var sqlQuery = `INSERT INTO sessions(values,userid)
     VALUES ('${values}','${userid}')`

@@ -28,4 +28,10 @@ module.exports = [{
   config:{
     payload : {}
 }
-  }]
+  },
+{
+  method:'GET',
+  path:'/login{user}',
+  handler:()=>{},
+  
+}]

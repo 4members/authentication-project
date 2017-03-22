@@ -20,12 +20,12 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "npm run db:drop && npm run db:create && node ./tests/dbtest/test.js && npm run db:drop",
+    "test": " npm run db:drop && npm run db:create && npm run migrate && node ./tests/routes/runner.js && npm run db:drop",
     "start": "node server.js",
     "db:create": "PGPASSWORD='1121993' psql -c 'CREATE DATABASE test;' -U postgres -h localhost",
     "db:drop": "PGPASSWORD='1121993' psql -c 'DROP DATABASE IF EXISTS test;' -U postgres  -h localhost",
    "test:local": "npm run db:create && node tests/routes/runner.js && npm run db:drop",
-   "migrate": "node scripts/migrate.js",
+   "migrate": "node tests/scripts/migrate.js",
    "coverage":"npm run db:create && node_modules/.bin/istanbul cover ./test/runner.js && npm run db:drop",
    "coverage:upload":"CODECLIMATE_REPO_TOKEN=20e6e6f86742e91e1471b428480944f74d1ea072592641a15a4f2884bc061b70 ./node_modules/.bin/codeclimate-test-reporter < coverage/lcov.info"
 

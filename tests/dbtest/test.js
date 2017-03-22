@@ -2,18 +2,16 @@ var test = require('tape')
 var shot = require('shot')
 var env = require('env2')
 env('./config.env');
-var config = require('../../services/database/config.js')
+
 var user = require('../../services/database/users.js')
 var session = require('../../services/database/session.js')
-config = config.test;
-var connect = require('../../services/database/connect.js')
-var client = connect(config);
+var client = require('../../services/database/connect.js')
+
 var aguid = require('aguid');
 var createtesttables = require('../scripts/migrate.js');
 
-createtesttables(client, (err, res) => {
-    console.log("test tables created");
-});
+
+
 
 var data = {
     email: 'muh@ms.co',
@@ -76,6 +74,7 @@ client.query(resetQuery, (err, result) => {
                         t.equal(data.username, resData.username, 'username is match');
                         t.equal(data.password, resData.password, 'password is match');
                         t.end();
+
                     })
                 })
 
@@ -109,6 +108,11 @@ client.query(resetQuery, (err, result) => {
                         var resValues = resData.values;
                         t.equal(topValues, resValues, 'value is match');
                         t.end()
+
+                        test.onFinish(() => {
+                            process.exit(0)
+                        });
+
 
                     })
                 })

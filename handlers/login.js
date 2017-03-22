@@ -1,8 +1,8 @@
 var users = require('../services/database/users.js')
 var session = require('../services/database/session.js')
-var connect = require('../services/database/connect.js')
-var config = require('../services/database/config.js');
-var client = connect(config.local)
+ var client = require('../services/database/connect.js')
+// var config = require('../services/database/config.js');
+// var client = connect(config.local)
 var Bcrypt = require('bcrypt');
 
 module.exports = (req, reply) => {

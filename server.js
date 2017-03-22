@@ -3,10 +3,9 @@ var hapiAuthJWT = require('hapi-auth-jwt2');
 var env = require('env2')
 env('./config.env');
 var routes = require('./routes.js');
-var config = require('./services/database/config.js');
-config = config.local;
-var connect = require('./services/database/connect.js');
-var client = connect(config);
+
+var client = require('./services/database/connect.js');
+
 var createtables = require('./services/database/createtables.js');
 
 
@@ -18,7 +17,8 @@ createtables(client, (err, result) => {
     if (err) {
         throw err
     }
-  
+    console.log('session',result);
+
 });
 
 server.register([hapiAuthJWT, require('inert'), require('vision')
