@@ -1,4 +1,3 @@
-
 module.exports = (client, cb) => {
     var usersquery = client.query(`CREATE TABLE IF NOT EXISTS usersdetails(id SERIAL PRIMARY KEY,
     username varchar(225) UNIQUE,
