@@ -10,17 +10,25 @@ module.exports = (req, reply) => {
     const password = req.payload.password
     users.selectUser(client, username, (err, res) => {
         if (res.rowCount == 0) {
+          console.log('1');
             reply({
-                text: 'you are not a user'
+                status: 'fail'
             })
         } else {
             Bcrypt.compare(password, res.rows[0].password, function(err, isMatch) {
                 if (err) {
                     return console.error(err);
                 } else {
+                  if(isMatch){
                     reply({
+                        status:'success',
                         text: 'welcome back'
                     });
+                  }else{
+                    reply({
+                        status: 'fail'
+                    })
+                  }
                 }
 
             });
