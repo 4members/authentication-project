@@ -18,7 +18,7 @@ function addUser(client, data, cb) {
 
 function selectUser(client, info, cb) {
     //select user by email or username for signin form
-    var sqlQuery = `SELECT * FROM usersdetails WHERE email=${info} OR username=${info}`
+    var sqlQuery = `SELECT * FROM usersdetails WHERE email='${info}' OR username='${info}'`
     client.query(sqlQuery, (err, result) => {
         if (err) {
             throw (err)
@@ -29,7 +29,7 @@ function selectUser(client, info, cb) {
 
 function selectUserByEmail(client, email, cb) {
     //select user by email for signup form
-    var sqlQuery = `SELECT * FROM usersdetails WHERE email=${email}`
+    var sqlQuery = `SELECT * FROM usersdetails WHERE email='${email}'`
     client.query(sqlQuery, (err, result) => {
         if (err) {
             throw (err)
@@ -40,7 +40,7 @@ function selectUserByEmail(client, email, cb) {
 
 function selectUserByUsername(client, username, cb) {
     //select user by username for signup form
-    var sqlQuery = `SELECT * FROM usersdetails WHERE username=${username}`
+    var sqlQuery = `SELECT * FROM usersdetails WHERE username='${username}'`
     client.query(sqlQuery, (err, result) => {
         if (err) {
             throw (err)

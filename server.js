@@ -5,7 +5,6 @@ env('./config.env');
 var routes = require('./routes.js');
 var config = require('./services/database/config.js');
 config = config.local;
-console.log(config);
 var connect = require('./services/database/connect.js');
 var client = connect(config);
 var createtables = require('./services/database/createtables.js');
