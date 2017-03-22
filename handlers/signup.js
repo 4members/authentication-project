@@ -4,6 +4,7 @@ var config = require('../services/database/config.js')
  var connect = require('../services/database/connect.js')
  var env = require('env2')
  env('./config.env');
+
  client =connect(config.local);
         var Bcrypt = require('bcrypt');
 

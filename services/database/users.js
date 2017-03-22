@@ -48,6 +48,22 @@ function selectUserByUsername(client, username, cb) {
     })
 }
 
+function selectUserBySessionId(client, sessionid, cb) {
+    //select user by username for signup form
+    var sqlQuery =
+      `SELECT *
+      FROM usersdetails
+      INNER JOIN sessions
+      ON sessions.userid=usersdetails.id
+      WHERE sessions.id='${sessionid}'`
+    client.query(sqlQuery, (err, result) => {
+        if (err) {
+            throw (err)
+        }
+        cb(err, result)
+    })
+}
+
 function updateUserData(client, data, cb) {
     //data meanis {username,password,bio}
     cb(null,true);
@@ -71,5 +87,6 @@ module.exports = {
     selectUser: selectUser,
     selectUserByUsername: selectUserByUsername,
     selectUserByEmail: selectUserByEmail,
-    updateUserData: updateUserData
+    updateUserData: updateUserData,
+    selectUserBySessionId:selectUserBySessionId
 }

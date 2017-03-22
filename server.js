@@ -8,6 +8,7 @@ config = config.local;
 var connect = require('./services/database/connect.js');
 var client = connect(config);
 var createtables = require('./services/database/createtables.js');
+const validate = require('./services/jwt/validate.js')
 
 
 var server = new hapi.Server();
@@ -18,16 +19,26 @@ createtables(client, (err, result) => {
     if (err) {
         throw err
     }
-  
+
 });
 
 server.register([hapiAuthJWT, require('inert'), require('vision')
         // no options required
     ],
+
+
     function(err) {
         if (err) {
             throw err;
         }
+          server.auth.strategy('jwt', 'jwt', true, {
+              key: process.env.JWT_SECRET,
+              validateFunc: validate,
+              verifyOptions: {
+                  ignoreExpiration: true,
+                  algorithms: ['HS256']
+              }
+          });
 
         server.route(routes);
 
