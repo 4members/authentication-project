@@ -1,27 +1,29 @@
 {
-  "name": "project-auth",
-  "version": "1.0.0",
-  "description": "",
-  "main": "server.js",
-  "dependencies": {
-    "aguid": "^2.0.0",
-    "env2": "^2.1.1",
-    "guid": "0.0.12",
-    "handlebars": "^4.0.6",
-    "hapi": "^16.1.0",
-    "hapi-auth-jwt2": "^7.2.4",
-    "inert": "^4.1.0",
-    "istanbul": "^0.4.5",
-    "pg": "^6.1.5",
-    "shot": "^3.4.0",
-    "tape": "^4.6.3",
-    "vision": "^4.1.1"
-  },
-  "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
-  },
-  "author": "",
-  "license": "ISC"
+    "name": "project-auth",
+    "version": "1.0.0",
+    "description": "",
+    "main": "server.js",
+    "dependencies": {
+        "aguid": "^2.0.0",
+        "env2": "^2.1.1",
+        "guid": "0.0.12",
+        "handlebars": "^4.0.6",
+        "hapi": "^16.1.0",
+        "hapi-auth-jwt2": "^7.2.4",
+        "inert": "^4.1.0",
+        "istanbul": "^0.4.5",
+        "pg": "^6.1.5",
+        "shot": "^3.4.0",
+        "tape": "^4.6.3",
+        "vision": "^4.1.1"
+    },
+    "devDependencies": {},
+    "scripts": {
+        "test": "npm run db:drop && npm run db:create && node ./tests/dbtest/test.js && npm run db:drop",
+        "start": "node server.js",
+        "db:create": "PGPASSWORD='1121993' psql -c 'CREATE DATABASE test;' -U postgres -h localhost",
+        "db:drop": "PGPASSWORD='1121993' psql -c 'DROP DATABASE IF EXISTS test;' -U postgres  -h localhost"
+    },
+    "author": "",
+    "license": "ISC"
 }

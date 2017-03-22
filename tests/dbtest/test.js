@@ -9,7 +9,11 @@ config = config.test;
 var connect = require('../../services/database/connect.js')
 var client = connect(config);
 var aguid = require('aguid');
-var createtables = require('../../services/database/createtables.js');
+var createtesttables = require('../scripts/migrate.js');
+
+createtesttables(client, (err, res) => {
+    console.log("test tables created");
+});
 
 var data = {
     email: 'muh@ms.co',
@@ -17,10 +21,10 @@ var data = {
     password: 'muh123muh',
 }
 
-var values = {
-    valid: true, // this will be set to false when the person logs out
-    id: aguid(), // a random session id
-    exp: new Date().getTime() + 30 * 60 * 1000 // expires in 30 minutes time
+var insertedValues = {
+    valid: true,
+    id: aguid(),
+    exp: new Date().getTime() + 30 * 60 * 1000
 }
 
 var resetQuery = `DELETE FROM sessions`
@@ -76,7 +80,7 @@ client.query(resetQuery, (err, result) => {
                 })
 
                 test('function createSession ok', (t) => {
-                    values = JSON.stringify(values);
+                    values = JSON.stringify(insertedValues);
                     session.createSession(client, values, data.id, (err, result) => {
                         if (err) {
                             throw err
@@ -90,21 +94,26 @@ client.query(resetQuery, (err, result) => {
                             t.equal(values.valid, resData.valid, 'value is match');
                             t.equal(values.id, resData.id, 'username is match');
                             t.equal(values.exp, resData.exp, 'password is match');
-
-                            test('function getSession should return the session', (t) => {
-                                session.getSession(client, data.id, (err, result) => {
-                                    if (err) {
-                                        throw err;
-                                    }
-                                    console.log('result', result);
-                                    var resData = result;
-                                    t.equal(values.valid, resData.valid, 'value is match');
-                                    t.end()
-                                })
-                            })
+                            t.end()
                         })
                     })
+                })
+                test('function getSession should return the session', (t) => {
+                    session.getSession(client, data.id, (err, result) => {
+                        if (err) {
+                            throw err;
+                        }
 
+                        var resData = result.rows[0];
+                        var topValues = JSON.stringify(insertedValues);
+                        var resValues = resData.values;
+                        t.equal(topValues, resValues, 'value is match');
+                        t.end()
+                        test.onFinish(() => {
+                          process.exit(0)
+                        });
+
+                    })
                 })
             })
         })
