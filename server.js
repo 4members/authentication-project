@@ -32,9 +32,10 @@ server.register([hapiAuthJWT, require('inert'), require('vision')
         });
 
     });
-server.start((err) => {
-    if (err) {
-        throw err;
-    }
-    console.log("listen to 8080");
-});
+
+if (!module.parent) {
+  server.start(function() {
+    console.log("server running at localhost:8080");
+  });
+}
+module.exports = server;

@@ -14,6 +14,7 @@
     "istanbul": "^0.4.5",
     "joi": "^10.2.2",
     "pg": "^6.1.5",
+    "shot": "^3.4.0",
     "vision": "^4.1.1"
   },
   "devDependencies": {},

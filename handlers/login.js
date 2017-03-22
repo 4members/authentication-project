@@ -5,7 +5,7 @@ var Bcrypt = require('bcrypt');
 
 module.exports = (req,reply)=>{
 
-  selectUser(client,req.username,(err,res){
+  selectUser(client,req.username,(err,res) => {
     if(res.length == 0){
       reply('you are not a user')
     }
@@ -16,9 +16,7 @@ module.exports = (req,reply)=>{
                         }
 
                         console.log('do they match?', isMatch);
-                })
-              )
-    }
-  })
-
+                });
+              }
+})
 }

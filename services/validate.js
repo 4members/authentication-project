@@ -12,6 +12,6 @@ function signup() {
 }
 
 module.exports = {
-    loginValidate: loginValidate,
-    signupValidate: signupValidate
+    login: login,
+    signup: signup
 }
