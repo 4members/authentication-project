@@ -1,2 +1,3 @@
 'use strict';
-require('signup.test.js');
+require('../dbtest/test.js');
+require('./signup.test.js');

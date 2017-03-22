@@ -16,7 +16,6 @@ module.exports = [{
   path:'/signup',
   handler: signup,
   config:{
-    auth: false,
     payload : {}
 
   }
@@ -25,8 +24,6 @@ module.exports = [{
   method:'GET',
   path:'/login',
   handler: login,
-  config:{
-    auth: false,
-  
+  config:{  
 }
   }]
