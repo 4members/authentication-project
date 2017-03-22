@@ -14,7 +14,8 @@ module.exports = (client, cb) => {
     var postsquery = client.query(`CREATE TABLE IF NOT EXISTS sessions(
       id SERIAL PRIMARY KEY,
       userid integer REFERENCES usersdetails(id),
-      value varchar(500)
+      valid varchar(500),
+
     )`, function(err, result) {
         if (err) {
             throw err;
