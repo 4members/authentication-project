@@ -1,7 +1,7 @@
-function createSession(client,id ,values, cb) {
+function createSession(client,values,userid,cb) {
   //value meanis {session object contain all values}
-  var sqlQuery = `INSERT INTO sessions(id,values)
-    VALUES ('${id}','${values}')`
+  var sqlQuery = `INSERT INTO sessions(values,userid)
+    VALUES ('${values}','${userid}')`
   client.query(sqlQuery, (err, result) => {
       if (err) {
           throw (err)

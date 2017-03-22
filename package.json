@@ -4,6 +4,7 @@
   "description": "",
   "main": "server.js",
   "dependencies": {
+    "aguid": "^2.0.0",
     "env2": "^2.1.1",
     "guid": "0.0.12",
     "handlebars": "^4.0.6",
