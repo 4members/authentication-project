@@ -16,14 +16,16 @@ module.exports = [{
   path:'/signup',
   handler: signup,
   config:{
-    payload : {}
-
+    validate: {
+    payload:validate.signup
   }
+}
 },
 {
-  method:'GET',
+  method:'POST',
   path:'/login',
   handler: login,
-  config:{  
+  config:{
+    payload : {}
 }
   }]

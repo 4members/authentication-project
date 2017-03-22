@@ -20,8 +20,15 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+   "test": "node tests/routes/runner.js",
+   "test:local": "npm run db:create && node tests/routes/runner.js && npm run db:drop",
+   "migrate": "node scripts/migrate.js",
+   "coverage":"npm run db:create && node_modules/.bin/istanbul cover ./test/runner.js && npm run db:drop",
+   "db:create": "psql -c 'CREATE DATABASE test;' -U postgres -h localhost  ",
+   "db:drop":"psql -c 'DROP DATABASE test;' -U postgres  -h localhost  ",
+   "coverage:upload":"CODECLIMATE_REPO_TOKEN=20e6e6f86742e91e1471b428480944f74d1ea072592641a15a4f2884bc061b70 ./node_modules/.bin/codeclimate-test-reporter < coverage/lcov.info"
+
   },
   "author": "",
   "license": "ISC"

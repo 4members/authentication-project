@@ -18,7 +18,7 @@ createtables(client, (err, result) => {
     if (err) {
         throw err
     }
-    console.log(result);
+  
 });
 
 server.register([hapiAuthJWT, require('inert'), require('vision')
