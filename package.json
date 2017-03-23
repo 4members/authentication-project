@@ -13,6 +13,7 @@
     "inert": "^4.1.0",
     "istanbul": "^0.4.5",
     "joi": "^10.2.2",
+    "jsonwebtoken": "^7.3.0",
     "pg": "^6.1.5",
     "vision": "^4.1.1"
   },
@@ -21,7 +22,7 @@
     "tape": "^4.6.3"
   },
   "scripts": {
-    "test": "npm run db:drop && npm run db:create && node ./tests/dbtest/test.js && npm run db:drop",
+    "test": "npm run db:drop && npm run db:create && node ./tests/routes/runner.js && npm run db:drop",
     "start": "node server.js",
     "db:create": "PGPASSWORD='1121993' psql -c 'CREATE DATABASE test;' -U postgres -h localhost",
     "db:drop": "PGPASSWORD='1121993' psql -c 'DROP DATABASE IF EXISTS test;' -U postgres  -h localhost",

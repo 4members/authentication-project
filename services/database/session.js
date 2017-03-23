@@ -1,7 +1,7 @@
-function createSession(client,values,userid,cb) {
+function createSession(client,id,values,userid,cb) {
   //value meanis {session object contain all values}
-  var sqlQuery = `INSERT INTO sessions(values,userid)
-    VALUES ('${values}','${userid}')`
+  var sqlQuery = `INSERT INTO sessions(id, values, userid)
+    VALUES ('${id}','${values}','${userid}')`
   client.query(sqlQuery, (err, result) => {
       if (err) {
           throw (err)
@@ -10,9 +10,9 @@ function createSession(client,values,userid,cb) {
   })
 }
 
-function getSession(client, userId,cb) {
+function getSession(client, id,cb) {
   var sqlQuery = `Select * FROM sessions WHERE
-      userid='${userId}'`
+      id='${id}'`
 
   client.query(sqlQuery, (err, result) => {
           if (err) {
@@ -23,10 +23,10 @@ function getSession(client, userId,cb) {
     }
 
 
-function setSession(client,userid,values,cb) {
+function setSession(client,id,values,cb) {
   var sqlQuery = `UPDATE sessions
         SET values='${values}'
-        WHERE userid='${userid}';`
+        WHERE id='${id}';`
 
   client.query(sqlQuery, (err, result) => {
           if (err) {
