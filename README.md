@@ -26,7 +26,7 @@ As a user, i can
 - sign up with a UNIQUE USERNAME
 - sign up with a strong password
 
-![alt text](https://scontent.fjrs2-1.fna.fbcdn.net/v/t34.0-12/17409750_795041983984298_142113614_n.png?oh=3d6aa9cf25a99faddfff274693d2312a&oe=58D46938)
+![alt text](https://scontent.fjrs2-1.fna.fbcdn.net/v/t35.0-12/17430833_795522130602950_193631736_o.png?oh=ddae97bb6959330590c88ebf1c8e5fe9&oe=58D5E282)
 
 ### sign-in
 
@@ -34,7 +34,7 @@ As a user, I can:
 - log in using email/username, and password
 - return to the site without needing to sign in again, using sessions/cookies
 
-![alt text](https://scontent.fjrs2-1.fna.fbcdn.net/v/t34.0-12/17474869_795042837317546_1115852499_n.png?oh=0a9a4f59f3b5686b1414c2c0cedfafe1&oe=58D5A1DE)
+![alt text](https://scontent.fjrs2-1.fna.fbcdn.net/v/t34.0-12/17467953_795524423936054_1603941318_n.png?oh=48384b5a843f993a4b573311f2b5febc&oe=58D5D2C2)
 
 ### sign-out:
 As a user, I can:
