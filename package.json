@@ -22,7 +22,8 @@
     "tape": "^4.6.3"
   },
   "scripts": {
-    "test": "npm run db:drop && npm run db:create && node ./tests/routes/runner.js && npm run db:drop",
+    "test":"node tests/routes/login.test.js && node tests/routes/login.test.js",
+    "test:local2": "npm run db:drop && npm run db:create && node ./tests/routes/runner.js && npm run db:drop",
     "start": "node server.js",
     "db:create": "psql -c 'CREATE DATABASE test;' -U postgres -h localhost",
     "db:drop": "psql -c 'DROP DATABASE IF EXISTS test;' -U postgres  -h localhost",
