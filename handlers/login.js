@@ -7,7 +7,7 @@ var aguid = require('aguid');
 var client = connect(config.local)
 var Bcrypt = require('bcrypt');
 var cookie_options = require('../services/jwt/cookie-options.js');
-var sessionvalue  = require('../services/jwt/sessionvalue.js');
+var generatesession  = require('../services/jwt/sessionvalue.js');
 
 module.exports = (req, reply) => {
     const username = req.payload.username
@@ -25,6 +25,8 @@ module.exports = (req, reply) => {
                 } else {
                   if(isMatch){
                   var userid = res.rows[0].id;
+                  var sessionvalue = generatesession();
+                  console.log(sessionvalue);
                     session.createSession(client, sessionvalue.id, JSON.stringify(sessionvalue),userid,(err,result)=>{
 
                     })

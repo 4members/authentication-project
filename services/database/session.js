@@ -23,10 +23,10 @@ function getSession(client, id,cb) {
     }
 
 
-function setSession(client,userid,values,cb) {
+function setSession(client,id,values,cb) {
   var sqlQuery = `UPDATE sessions
         SET values='${values}'
-        WHERE userid='${userid}';`
+        WHERE id='${id}';`
 
   client.query(sqlQuery, (err, result) => {
           if (err) {

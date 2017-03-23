@@ -1,5 +1,6 @@
 const signup = require('./handlers/signup.js')
 const Joi = require('joi')
+const root = require('./handlers/root.js');
 const validate = require('./services/validate.js')
 const login = require('./handlers/login.js')
 const logout = require('./handlers/logout.js')
@@ -9,9 +10,10 @@ const profile = require('./handlers/profile.js')
 module.exports = [{
     method: 'GET',
     path: '/',
-    handler: function(req, reply) {
-        reply.view('index')
-    }
+    handler:root,
+     config: {
+          auth:false
+      }
 }, {
     method: 'POST',
     path: '/signup',
@@ -26,7 +28,8 @@ module.exports = [{
     path: '/login',
     handler: login,
     config: {
-        payload: {}
+        payload: {},
+        auth:false
     }
 }, {
     method: 'GET',
