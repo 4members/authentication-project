@@ -10,6 +10,7 @@ var connect = require('../../services/database/connect.js')
 var client = connect(config);
 var aguid = require('aguid');
 var createtesttables = require('../scripts/migrate.js');
+var data_id;
 
 createtesttables(client, (err, res) => {
     console.log("test tables created");
@@ -51,7 +52,9 @@ client.query(resetQuery, (err, result) => {
                     t.equal(data.email, resData.email, 'email is match');
                     t.equal(data.username, resData.username, 'username is match');
                     t.equal(data.password, resData.password, 'password is match');
-                    data.id = resData.id;
+
+                    data_id = resData.id;
+console.log('gfhgfhdghh',data_id);
                     t.end();
                 })
                 test('function selectUserByEmail ok ', (t) => {
@@ -81,11 +84,13 @@ client.query(resetQuery, (err, result) => {
 
                 test('function createSession ok', (t) => {
                     values = JSON.stringify(insertedValues);
-                    session.createSession(client, values, data.id, (err, result) => {
+                    var id  = parseInt(JSON.parse(values).id);
+
+                    session.createSession(client,id, values,data_id, (err, result) => {
                         if (err) {
                             throw err
                         }
-                        var sqlQuery = `SELECT * FROM sessions WHERE userid ='1';`
+                        var sqlQuery = `SELECT * FROM sessions WHERE userid =${data_id};`
                         client.query(sqlQuery, (err, result) => {
                             if (err) {
                                 throw (err)
@@ -99,7 +104,9 @@ client.query(resetQuery, (err, result) => {
                     })
                 })
                 test('function getSession should return the session', (t) => {
-                    session.getSession(client, data.id, (err, result) => {
+                  values = JSON.stringify(insertedValues);
+                  var id  = parseInt(JSON.parse(values).id);
+                    session.getSession(client, id, (err, result) => {
                         if (err) {
                             throw err;
                         }
