@@ -10,14 +10,14 @@ var cookie_options = require('../services/jwt/cookie-options.js');
 var generatesession  = require('../services/jwt/sessionvalue.js');
 
 module.exports = (req, reply) => {
-    const username = req.payload.username
+    const username = req.payload.username || req.payload.email
     const password = req.payload.password
     users.selectUser(client, username, (err, res) => {
         if (res.rowCount == 0) {
           console.log('1');
             reply({
                 status: 'fail'
-            })
+            }).code(400)
         } else {
             Bcrypt.compare(password, res.rows[0].password, function(err, isMatch) {
                 if (err) {
@@ -28,18 +28,19 @@ module.exports = (req, reply) => {
                   var sessionvalue = generatesession();
                   console.log(sessionvalue);
                     session.createSession(client, sessionvalue.id, JSON.stringify(sessionvalue),userid,(err,result)=>{
-
-                    })
-                    var token = JWT.sign(sessionvalue, process.env.JWT_SECRET);
+                      var token = JWT.sign(sessionvalue, process.env.JWT_SECRET);
+                      reply({
+                          status:'success',
+                          text: 'welcome back'
+                      }).header("Authorization", token)
+                      .state("token", token, cookie_options).code(200);
+                    });
+                  }
+                  else{
                     reply({
-                        status:'success',
-                        text: 'welcome back'
-                    }).header("Authorization", token)
-                    .state("token", token, cookie_options);
-                  }else{
-                    reply({
-                        status: 'fail'
-                    })
+                        status: 'fail',
+                        text:'Wrong password'
+                    }).code(200)
                   }
                 }
 

@@ -15,12 +15,14 @@ var config = require('../services/database/config.js')
             users.selectUserByEmail(client, email, (err, res) => {
               console.log('1',res.command);
                 if (res.rowCount > 0) {
-                    reply({status:'fail'})
+                    reply({status:'fail',
+                  text: 'fail-email'}).code(400)
                 } else {
                     users.selectUserByUsername(client, username, (err, res) => {
                       console.log('2',res.command);
                         if (res.rowCount > 0) {
-                            reply({status:'fail'});
+                            reply({status:'fail',
+                          text: 'fail-username'}).code(400);
                         } else {
                             Bcrypt.hash(password,10, (err, hash)=> {
                                 if (err) {
@@ -33,7 +35,7 @@ var config = require('../services/database/config.js')
                                     users.addUser(client, data, (err, res)=> {
                                       console.log('3',res.command);
                                           if (res) {
-                                            reply({text:'you are successfuly added'});
+                                            reply({text:'you are successfuly added'}).code(200);
                                         };
                                     });
                                 }

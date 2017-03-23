@@ -8,7 +8,7 @@ test('endpoint test | POST/ | Right Request', t => {
     const request = Object.assign({}, requestDefaults,{
       payload:{
         username: 'test',
-        email: 'test@test.com',
+        email: 'test@t1.com',
         password:'11219dgdrgerg'
       }
     });
@@ -24,7 +24,7 @@ test('endpoint test | POST/ | Bad Request with existed user', t => {
     const request = Object.assign({}, requestDefaults,{
       payload:{
         username: 'test',
-        email: 'test@test.com',
+        email: 'test@t1.com',
         password:'11219dgdrgerg'
       }
     });
@@ -42,7 +42,7 @@ test('endpoint test | POST/ | Bad Request with wrong payload', t => {
     const request = Object.assign({}, requestDefaults,{
       payload:{
         username: 'test',
-        email: 'test@test.com',
+        email: 'test@t1.com',
         password:'11'
       }
     });

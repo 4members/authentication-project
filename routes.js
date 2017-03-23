@@ -7,18 +7,13 @@ const logout = require('./handlers/logout.js')
 const profile = require('./handlers/profile.js')
 
 
-module.exports = [{
-    method: 'GET',
-    path: '/',
-    handler:root,
-     config: {
-          auth:false
-      }
-}, {
+module.exports = [
+ {
     method: 'POST',
     path: '/signup',
     handler: signup,
     config: {
+      auth:false,
         validate: {
             payload: validate.signup
         }
@@ -28,7 +23,6 @@ module.exports = [{
     path: '/login',
     handler: login,
     config: {
-        payload: {},
         auth:false
     }
 }, {

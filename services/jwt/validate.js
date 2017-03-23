@@ -5,9 +5,11 @@ var config = require('../database/config.js')
 module.exports =(decoded, request, callback) => {
     session.getSession(client,decoded.id,(err,result)=>{
       var session;
+      console.log("result1",result);
       if (result.rows[0]) {
         console.log("rowCount",result.rowCount);
           session = JSON.parse(result.rows[0].values);
+          console.log("session1",session);
       } else {
         console.log(err); // unable to find session in database ... reply is null
           return callback(err, false);
