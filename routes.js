@@ -7,8 +7,16 @@ const logout = require('./handlers/logout.js')
 const profile = require('./handlers/profile.js')
 
 
-module.exports = [
- {
+module.exports = [{
+    method: 'GET',
+    path: '/',
+    handler:function(req,reply){
+      reply('index')
+    },
+     config: {
+          auth:false
+      }
+}, {
     method: 'POST',
     path: '/signup',
     handler: signup,
