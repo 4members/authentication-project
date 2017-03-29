@@ -1,7 +1,7 @@
 const Joi =require('joi')
 
-function login() {
-  username: Joi.string()
+var login = {
+  username: Joi.string(),
   password: Joi.string()
 }
 

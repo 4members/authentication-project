@@ -13,7 +13,13 @@ const validate = require('./services/jwt/validate.js')
 
 var server = new hapi.Server();
 server.connection({
-    port: 8080
+    port: 8080,
+    routes:{
+      cors:{
+        origin: ['*'],
+        // credentials: true,
+      }
+    },
 });
 createtables(client, (err, result) => {
     if (err) {
